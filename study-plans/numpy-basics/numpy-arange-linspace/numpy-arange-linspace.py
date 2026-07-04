@@ -1,9 +1,18 @@
 import numpy as np
 
 def create_sequence(start, stop, param, kind):
-    """
-    Returns: 1D ndarray of float64 values
-    """
+    
     if kind == 'linspace':
-        return np.linspace(start, stop, param, dtype = np.float64)
-    return np.arange(start, stop, param, dtype = np.float64)
+        a = np.empty(param)
+        step = (stop-start)/(param-1)
+        
+        for i in range(param):
+            a[i] = start + i*step
+        return a
+    else:
+        a = []
+        x = start
+        while x < stop:
+            a.append(x)
+            x+=param
+        return np.asarray(a, dtype=np.float64)
